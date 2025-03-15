@@ -104,5 +104,15 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     else:
         results['returnShuffle'] = None
 
+    #finding min r
+    minR = rVals[0]
+    minRIndex=0
+    for i in range(len(rVals)):
+        if rVals[i] < minR:
+            minR = rVals[i]
+            minRIndex = i
+    results['minR'] = minR
+    results['minRIndex'] = minRIndex
+
     
                 
