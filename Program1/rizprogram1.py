@@ -92,5 +92,17 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
                 tempDeck=[]
                 for card in tempNewDeck:
                     tempDeck.append(card)
+            #check if same again
+            isTempOriginal = True
+            for j in range(numOfCards):
+                if tempDeck[j] != j+1:
+                    isTempOriginal = False
+                    break
+            if isTempOriginal:
+                results['returnShuffle'] = i
+                break
+    else:
+        results['returnShuffle'] = None
 
+    
                 
