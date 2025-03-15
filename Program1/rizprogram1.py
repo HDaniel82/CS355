@@ -152,7 +152,7 @@ def main():
     
     allResults = []
     for run in runs:
-        print(f"\n*** {run['name']}: n={run['cards']} ***")
+        print(f"\n{run['name']}: n={run['cards']}")
         
         result = cardShuffles(numOfCards=run['cards'], numOfShuffles=maxShuffles, shuffleType=run['type'])
         
