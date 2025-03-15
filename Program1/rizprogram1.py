@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     results = {}
     #get values needed
@@ -122,5 +124,12 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
         runName += " (start with second half)"
     runName += f", n= {numOfCards}"
 
+    plt.figure(figsize=(12, 10))
+    plt.grid(True)
+    plt.plot(range(len(rVals)), rVals, marker="o")
+    plt.title(runName)
+    plt.xlabel("Num of Shuffles")
+    plt.ylabel('Corr Coeff (r)')
+    plt.savefig(f'run{shuffleType}_{numOfCards}.png')
     
-                
+             
