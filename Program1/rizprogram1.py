@@ -114,5 +114,13 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     results['minR'] = minR
     results['minRIndex'] = minRIndex
 
+    #runs described
+    nameOfRun = f"Run {shuffleType}"
+    if shuffleType ==1:
+        runName += " (start with first half)"
+    else:
+        runName += " (start with second half)"
+    runName += f", n= {numOfCards}"
+
     
                 
