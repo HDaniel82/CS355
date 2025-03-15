@@ -1,6 +1,6 @@
 def cardShuffles(numOfCards):
     results = {}
-
+    #get values needed
     sumi = 0
     for i in range(1, numOfCards+1):
         sumi += 1
@@ -15,3 +15,13 @@ def cardShuffles(numOfCards):
             sumIyi += (i+1)*deck[i]
         r= (numOfCards*sumIyi - sqsum)/(numOfCards*sumsq - sqsum)
         return r
+    
+    #inititalize deck
+    deck = []
+    for i in range(1, numOfCards+1):
+        deck.append(i)
+    originalDeck = []
+    for i in range(numOfCards):
+        originalDeck.append(deck[i])
+
+    #start with r values
