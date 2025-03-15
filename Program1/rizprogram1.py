@@ -117,7 +117,7 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     results['minRIndex'] = minRIndex
 
     #runs described
-    nameOfRun = f"Run {shuffleType}"
+    runName = f"Run {shuffleType}"
     if shuffleType ==1:
         runName += " (start with first half)"
     else:
@@ -138,3 +138,65 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     else:
         print(f"{runName}: did not go back to original within {numOfShuffles} shuffles") 
     return results
+
+def main():
+    mainShuffles = 15
+    maxShuffles = 100
+
+    runs = [
+        {"name": "First Run", "cards": 52, "type": 1},
+        {"name": "Second Run", "cards": 52, "type": 2},
+        {"name": "Third Run", "cards": 104, "type": 1},
+        {"name": "Fourth Run", "cards": 104, "type": 2}
+    ]
+    
+    allResults = []
+    for run in runs:
+        print(f"\n*** {run['name']}: n={run['cards']} ***")
+        
+        result = cardShuffles(numOfCards=run['cards'], numOfShuffles=maxShuffles, shuffleType=run['type'])
+        
+        allResults.append(result)
+    
+    print("\nSummary")
+    
+    for i, run in enumerate(runs):
+        print(f"\n{run['name']} (n={run['cards']}):")
+        
+        print(f"Minimum r value: {allResults[i]['minR']:.6f} after {allResults[i]['minRIndex']} shuffles")
+        print(f"Returned to original order: {allResults[i]['backToSame']}")
+        
+        if allResults[i]['backToSame']:
+            print(f"Number of shuffles to return: {allResults[i]['returnShuffle']}")
+            
+            isEnoughShuffles = False
+            if allResults[i]['returnShuffle'] <= mainShuffles:
+                isEnoughShuffles = True
+                
+            if isEnoughShuffles:
+                print("15 shuffles enough to return: Yes")
+            else:
+                print("15 shuffles enough to return: No")
+    
+    #questions for assignment
+    print("\nAssignment questions")
+    
+    for i, run in enumerate(runs):
+        print(f"\n{run['name']} (n={run['cards']}):")
+        print(f"1. Cards in most random order after {allResults[i]['minRIndex']} shuffles")
+        print(f"2. Deck returned to original: {allResults[i]['backToSame']}")
+        
+        if allResults[i]['backToSame']:
+            print(f"   After {allResults[i]['returnShuffle']} shuffles")
+        
+        isEnoughShuffles = False
+        if allResults[i]['backToSame']:
+            if allResults[i]['returnShuffle'] <= mainShuffles:
+                isEnoughShuffles = True
+        
+        if isEnoughShuffles:
+            print("3. 15 shuffles enough to return to original order: Yes")
+        else:
+            print("3. 15 shuffles enough to return to original order: No")
+
+main()
