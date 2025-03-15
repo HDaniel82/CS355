@@ -50,5 +50,16 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
         r= rCalculator(deck)
         rVals.append(r)
 
-        
+        isSameFlag = True
+        for j in range(numOfCards):
+            if deck[j] != originalDeck[j]:
+                isSameFlag = False
+                break
+        if isSameFlag:
+            print(f"Run {shuffleType} (n+{numOfCards}): deck backl to riginal after {i+1} shuffles")
+            break
+    results['rVals'] = rVals
+    results['finalDeck'] = deck
+
+
                 
