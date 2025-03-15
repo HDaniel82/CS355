@@ -131,5 +131,10 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     plt.xlabel("Num of Shuffles")
     plt.ylabel('Corr Coeff (r)')
     plt.savefig(f'run{shuffleType}_{numOfCards}.png')
-    
-             
+
+    print(f'\n{runName}: min r vale of {minR: .5f} after {minRIndex} shuffles')
+    if results['backToSame']:
+        print(f"{runName}: Deck backt o original after {results['returnShuffle']} shuffles")
+    else:
+        print(f"{runName}: did not go back to original within {numOfShuffles} shuffles") 
+    return results
