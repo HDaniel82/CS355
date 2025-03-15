@@ -39,3 +39,8 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
             for j in range(numOfCards//2):
                 newDeck.append(firstHalf[j])
                 newDeck.append(secondHalf[j])
+        else:
+            for j in range(numOfCards//2):
+                newDeck.append(secondHalf[j])
+                newDeck.append(firstHalf[j])
+                
