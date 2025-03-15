@@ -1,4 +1,4 @@
-def cardShuffles(numOfCards):
+def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     results = {}
     #get values needed
     sumi = 0
@@ -25,3 +25,17 @@ def cardShuffles(numOfCards):
         originalDeck.append(deck[i])
 
     #start with r values
+    rVals = [1.0]
+    for i in range(numOfShuffles):
+        firstHalf=[]
+        for j in range(numOfCards//2):
+            firstHalf.append(deck[j])
+        secondHalf=[]
+        for j in. range(numOfCards//2, numOfCards):
+            secondHalf.append(deck[j])
+        newDeck=[]
+        #different shuffles
+        if shuffleType == 1:
+            for j in range(numOfCards//2):
+                newDeck.append(firstHalf[j])
+                newDeck.append(secondHalf[j])
