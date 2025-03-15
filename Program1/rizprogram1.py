@@ -61,5 +61,36 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     results['rVals'] = rVals
     results['finalDeck'] = deck
 
+    isSameFlag = True
+    for j in range(numOfCards):
+        if deck[j] != originalDeck[j]:
+            isSameFlag = False
+            break
+    results['backToSame'] = isSameFlag
+
+    if  results['backToSame']:
+        for i in range(1, len(rVals)):
+            tempDeck=[]
+            for j in range(1, numOfCards+1):
+                tempDeck.append(j)
+            for k in range(i):
+                tempFirstHalf=[]
+                for j in range(numOfCards//2):
+                    tempFirstHalf.append(tempDeck[j])
+                tempSecondHalf=[]
+                for j in range(numOfCards//2, numOfCards):
+                    tempSecondHalf.append(tempDeck[j])
+                tempNewDeck=[]
+                if shuffleType==1:
+                    for j in range(numOfCards//2):
+                        tempNewDeck.append(tempFirstHalf[j])
+                        tempNewDeck.append(tempSecondHalf[j])
+                else:
+                    for j in range(numOfCards//2):
+                        tempNewDeck.append(tempSecondHalf[j])
+                        tempNewDeck.append(tempFirstHalf[j])
+                tempDeck=[]
+                for card in tempNewDeck:
+                    tempDeck.append(card)
 
                 
