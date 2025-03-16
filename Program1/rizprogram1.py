@@ -58,7 +58,7 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
                 isSameFlag = False
                 break
         if isSameFlag:
-            print(f"Run {shuffleType} (n+{numOfCards}): deck backl to riginal after {i+1} shuffles")
+            print(f"Run {shuffleType} (n+{numOfCards}): deck back to original after {i+1} shuffles")
             break
     results['rVals'] = rVals
     results['finalDeck'] = deck
@@ -132,9 +132,9 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     plt.ylabel('Corr Coeff (r)')
     plt.savefig(f'run{shuffleType}_{numOfCards}.png')
 
-    print(f'\n{runName}: min r vale of {minR: .5f} after {minRIndex} shuffles')
+    print(f'\n{runName}: min r value of {minR: .5f} after {minRIndex} shuffles')
     if results['backToSame']:
-        print(f"{runName}: Deck backt o original after {results['returnShuffle']} shuffles")
+        print(f"{runName}: Deck back to original after {results['returnShuffle']} shuffles")
     else:
         print(f"{runName}: did not go back to original within {numOfShuffles} shuffles") 
     return results
