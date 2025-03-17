@@ -5,7 +5,7 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     #get values needed
     sumi = 0
     for i in range(1, numOfCards+1):
-        sumi += 1
+        sumi += i
     sumsq = 0
     for i in range(1, numOfCards+1):
         sumsq += i*i
