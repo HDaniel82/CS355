@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import random
 
 def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     results = {}
@@ -41,10 +42,17 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
             for j in range(numOfCards//2):
                 newDeck.append(firstHalf[j])
                 newDeck.append(secondHalf[j])
-        else:
+        elif shuffleType ==2:
             for j in range(numOfCards//2):
                 newDeck.append(secondHalf[j])
                 newDeck.append(firstHalf[j])
+
+        #Attempt at bonus, just iterating through the deck swapping each card with a unshuffled portion 
+        elif shuffleType ==3:
+            for j in range(numOfCards - 1, 0, -1): #loops backwards through the deck till we reach first card 
+                randIndex = random.randint(0, j) #random index from 0 to j 
+                deck[j], deck[randIndex] = deck[randIndex], deck[j] #swapping elemnts with element at random index 
+                newDeck = deck[:]  #the deck becomes the shuffled deck
 
         deck =[]
         for card in newDeck:
@@ -130,7 +138,7 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     plt.title(runName)
     plt.xlabel("Num of Shuffles")
     plt.ylabel('Corr Coeff (r)')
-    plt.savefig(f'run{shuffleType}_{numOfCards}.png')
+    #plt.savefig(f'run{shuffleType}_{numOfCards}.png')
 
     print(f'\n{runName}: min r value of {minR: .5f} after {minRIndex} shuffles')
     if results['backToSame']:
@@ -147,7 +155,9 @@ def main():
         {"name": "First Run", "cards": 52, "type": 1},
         {"name": "Second Run", "cards": 52, "type": 2},
         {"name": "Third Run", "cards": 104, "type": 1},
-        {"name": "Fourth Run", "cards": 104, "type": 2}
+        {"name": "Fourth Run", "cards": 104, "type": 2},
+        {"name": "BONUS: Fifth Run", "cards": 52, "type": 3},  #shuffle run for bonus 
+        {"name": "BONUS: Sixth Run", "cards": 104, "type": 3}  #shuffle run for bonus 
     ]
     
     allResults = []
