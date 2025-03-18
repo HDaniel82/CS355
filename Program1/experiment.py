@@ -46,19 +46,13 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
             for j in range(numOfCards//2):
                 newDeck.append(secondHalf[j])
                 newDeck.append(firstHalf[j])
-        #For the bonus we are attempting the overhand shuffle 
-        elif shuffleType == 3:  # 
-            numPackets = random.randint(5, 15)   #randomly choose 5-15 packets to divide deck into 
-            remainingCards = deck[:] #creates a copy of original deck  
-            shuffledDeck = [] 
-            while remainingCards: #loops until all remaining cards are moved into shuffled deck 
-                packetSize = random.randint(1, max(1, len(remainingCards) // numPackets)) 
-                #^^^ Randomly selects packet size ensuring each packet is atleast 1 card, I also implemented a fail safe to ensure packets would never get too big 
-                packet = remainingCards[:packetSize]
-                remainingCards = remainingCards[packetSize:]
-                shuffledDeck = packet + shuffledDeck #inserts packet at the front of shuffledDeck 
-            newDeck = shuffledDeck[:] #copies shuffled deck into newDeck 
-        
+        #Attempt at bonus, just iterating through the deck swapping each card with a unshuffled portion 
+        elif shuffleType == 3:  
+           for j in range(numOfCards - 1, 0, -1): #loops backwards through the deck till we reach first card 
+                randIndex = random.randint(0, j) #random index from 0 to j 
+                deck[j], deck[randIndex] = deck[randIndex], deck[j] #swapping elemnts with element at random index 
+                newDeck = deck[:]  #the deck becomes the shuffled deck
+
         deck = newDeck[:]
         r= rCalculator(deck)
         rVals.append(r)
@@ -165,8 +159,8 @@ def main():
         {"name": "Second Run", "cards": 52, "type": 2},
         {"name": "Third Run", "cards": 104, "type": 1},
         {"name": "Fourth Run", "cards": 104, "type": 2},
-        {"name": "Fifth Run", "cards": 52, "type": 3},  #Bonus shuffle run
-        {"name": "Sixth Run", "cards": 104, "type": 3}  #Bonus shuffle run
+        {"name": "Fifth Run", "cards": 52, "type": 3},  #shuffle run for bonus 
+        {"name": "Sixth Run", "cards": 104, "type": 3}  #shuffle run for bonus 
     ]
     
     allResults = []
