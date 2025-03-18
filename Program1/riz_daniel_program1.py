@@ -138,7 +138,7 @@ def cardShuffles(numOfCards, numOfShuffles, shuffleType):
     plt.title(runName)
     plt.xlabel("Num of Shuffles")
     plt.ylabel('Corr Coeff (r)')
-    #plt.savefig(f'run{shuffleType}_{numOfCards}.png')
+    plt.savefig(f'run{shuffleType}_{numOfCards}.png')
 
     print(f'\n{runName}: min r value of {minR: .5f} after {minRIndex} shuffles')
     if results['backToSame']:
