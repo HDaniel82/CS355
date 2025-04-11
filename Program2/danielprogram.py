@@ -80,7 +80,7 @@ def airline_two(trials = 10000):
         elif time < 1020 - 1: 
             dep3 = 1020 
         else: 
-            stranded =+ 1 
+            stranded += 1 
             continue 
         time = dep3 
 
@@ -88,15 +88,15 @@ def airline_two(trials = 10000):
         t3 = generate_flight_times(210, 48)
         time += t3
         total_time += time 
-        success =+ 1 
+        success += 1 
         if time <= 750: 
             on_time += 1 
         
-        return{ 
+    return{ 
         "avg_time": total_time / success if success else None,
         "time_prob": on_time / success if success else 0,
         "stranded_prob": stranded / trials
-        }
+    }
 
 def mins_to_hours(min):
     hours = min // 60 
