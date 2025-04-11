@@ -52,6 +52,12 @@ def airline_one(trials=10000):
         "stranded_prob": stranded / trials
     }
 
+def airline_two(trials = 10000):
+    stranded = 0 
+    on_time = 0 
+    total_time = 0 
+    success = 0
+
 def mins_to_hours(min):
     hours = min // 60 
     minutes = min % 60 
@@ -59,6 +65,7 @@ def mins_to_hours(min):
 
 def main(): 
     one = airline_one()
+    two = airline_two()
     avg_hours, avg_minutes = mins_to_hours(one['avg_time'])
 
     print(f"Average Arrival Time: {avg_hours} hours and {avg_minutes:.2f} minutes")
