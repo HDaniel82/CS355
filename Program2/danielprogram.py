@@ -18,7 +18,12 @@ def airline_one(trials=10000):
         t1 = generate_flight_times(240, 24)
         time += t1 
         if time < 750 - 1: 
-            dep2 = 750
+            dep2 = 750 
+            '''
+            I added a (on_time +=1) after this line and the prob for on-time 
+            shot up which makes sense but if you do the same for the next elif 
+            it goes to a value around 1.8 which is way too high. 
+            '''
         elif time < 780-1: 
             dep2 = 780 
         else: 
@@ -43,7 +48,7 @@ def airline_one(trials=10000):
         time += t3 
         total_time += time 
         success += 1 
-        if time <= 780: 
+        if time <= 1260: #780 originally  
             on_time += 1 
         
     return{ 
@@ -89,7 +94,7 @@ def airline_two(trials = 10000):
         time += t3
         total_time += time 
         success += 1 
-        if time <= 750: 
+        if time <= 1230: #750 originally, me playing with values for ontime  
             on_time += 1 
         
     return{ 
@@ -109,12 +114,13 @@ def main():
     avg_hours, avg_minutes = mins_to_hours(one['avg_time'])
     avg_hours2, avg_minutes2 = mins_to_hours(two['avg_time'])
 
-
+    print("\nAirline One:")
     print(f"Average Arrival Time: {avg_hours} hours and {avg_minutes:.2f} minutes")
     print(f"Probability of On-Time Arrival: {one['time_prob']:.4f}")
     print(f"Probability of being Stranded: {one['stranded_prob']:.4f}")
 
-    print(f"\nAverage Arrival Time: {avg_hours2} hours and {avg_minutes2:.2f} minutes")
+    print("\nAirline Two:")
+    print(f"Average Arrival Time: {avg_hours2} hours and {avg_minutes2:.2f} minutes")
     print(f"Probability of On-Time Arrival: {two['time_prob']:.4f}")
     print(f"Probability of being Stranded: {two['stranded_prob']:.4f}")
 
