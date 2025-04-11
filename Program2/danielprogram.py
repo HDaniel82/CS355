@@ -1,9 +1,68 @@
-import random 
+from numpy import random 
 
 def generate_flight_times(u, sigma): 
     min_time = u - 3 * sigma 
     max_time = u + 3 * sigma 
-    return max(min(random.guass(u, sigma), max_time), min_time)
+    return max(min(random.normal(u, sigma), max_time), min_time)
 
 def airline_one(trials=10000):
     stranded = 0 
+    on_time = 0 
+    total_time = 0 
+    success = 0 
+
+    for i in range(trials): 
+        time = 0 
+
+        #a -> b 
+        t1 = generate_flight_times(240, 24)
+        time += t1 
+        if time < 750 - 1: 
+            dep2 = 750
+        elif time < 780-1: 
+            dep2 = 780 
+        else: 
+            stranded += 1 
+            continue 
+        time = dep2 
+
+        #b -> c 
+        t2 = generate_flight_times(240, 24)
+        time += t2
+        if time < 1020 - 1: 
+            dep3 = 1020 
+        elif time < 1050 -1: 
+            dep3 = 1050 
+        else: 
+            stranded += 1
+            continue 
+        time = dep3 
+
+        #c -> d 
+        t3 = generate_flight_times(210, 24)
+        time += t3 
+        total_time += time 
+        success += 1 
+        if time <= 780: 
+            on_time += 1 
+        
+    return{ 
+        "avg_time": total_time / success if success else None,
+        "time_prob": on_time / success if success else 0,
+        "stranded_prob": stranded / trials
+    }
+
+def mins_to_hours(min):
+    hours = min // 60 
+    minutes = min % 60 
+    return hours, minutes
+
+def main(): 
+    one = airline_one()
+    avg_hours, avg_minutes = mins_to_hours(one['avg_time'])
+
+    print(f"Average Arrival Time: {avg_hours} hours and {avg_minutes:.2f} minutes")
+    print(f"Probability of On-Time Arrival: {one['time_prob']:.4f}")
+    print(f"Probability of being Stranded: {one['stranded_prob']:.4f}")
+
+main()
