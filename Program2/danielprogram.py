@@ -48,7 +48,7 @@ def airline_one(trials=10000):
         time += t3 
         total_time += time 
         success += 1 
-        if time <= 1260: #780 originally  
+        if time <= 1260:   
             on_time += 1 
         
     return{ 
@@ -94,7 +94,7 @@ def airline_two(trials = 10000):
         time += t3
         total_time += time 
         success += 1 
-        if time <= 1230: #750 originally, me playing with values for ontime  
+        if time <= 1230: 
             on_time += 1 
         
     return{ 
